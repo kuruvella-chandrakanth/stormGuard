@@ -1,0 +1,26 @@
+Which system profile should I choose for my Enphase Energy System?
+Learn which system profile to choose for your Enphase Energy System with IQ Batteries. Understand how each profile manages energy export-import for maximum savings and energy independence.
+Your Enphase Energy System has multiple profiles that automatically configure different aspects of your system to meet your energy goals:
+AI Optimization*: Maximizes your savings based on electricity rates, consumption patterns, and expected solar production.
+Self-Consumption: Maximizes your use of your own solar power while reducing your dependence on electricity from the utility grid.
+Savings: Minimizes your electricity bills by reducing consumption from the utility grid during peak hours when energy rates are highest.
+Full Backup: Keeps your batteries fully charged so you are always prepared for a potential power outage.
+*Note: The AI Optimization profile is in Beta and only available to system owners in certain regions, such as California (USA), Belgium, Germany, and Netherlands. Differing energy export and import rules may apply to each region. More regions will be added soon.
+How to select a profile
+To select a profile, open the Enphase App and go to Menu > Settings > Profile > Edit next to System profile.
+Then, select the profile you want and tap Apply.
+How do the profiles work?
+Self-Consumption
+When the sun is shining, the solar panels power your home first and then charge the batteries. If excess solar energy is available, it is exported to the utility grid.
+When it is cloudy or the sun is down, your home is powered by your batteries. When your home needs more power than your solar panels and batteries can provide, energy is imported from the utility grid.
+Savings
+During peak hours, your home is powered by the energy stored in the batteries first, then by the solar panels, and then by the utility grid, in this order. Solar energy your home does not use is exported to the utility grid.
+During off-peak hours, the solar panels charge the batteries, and any excess solar energy is used to power your home. When your home consumes more power than your solar panels can produce, electricity is imported from the utility grid.
+AI Optimization*
+The AI-based optimization profile forecasts solar production and home consumption and uses solar system configuration, electricity rates, and other system settings to generate more value for system owners by maximizing financial savings.
+As an example, during off-peak hours with low import and export rates and higher solar production than home consumption, AI Optimization maximizes energy independence by prioritizing use of solar power in the home and sending excess solar energy to the battery before exporting additional excess solar to the grid.
+During peak hours, with high import rates and export rates that are even higher than the import rates, the system optimizes savings by discharging the battery at maximum power to the home and exporting excess energy to the grid. In addition, any available solar energy is exported to the grid to help maximize export credits.
+In addition to the parameters mentioned above, other optimization scenarios are also used if the AI Optimization profile is selected.
+Full Backup
+When the sun is shining, the solar panels charge the batteries. Any excess solar energy powers your home; the rest is exported to the utility grid. Electricity is imported from the utility grid when your home needs more power than your solar panels can produce.
+When it is not sunny, your home uses electricity from the utility grid. Your batteries power your home only when the utility grid is not available.

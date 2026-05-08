@@ -1,0 +1,30 @@
+The Storm Guard feature in the Enphase App tracks severe weather alerts and helps ready your IQ Batteries to provide backup power during potential weather-related grid outages. By default, Storm Guard is enabled for your Enphase Energy System.
+Note: If you disable Storm Guard, your system will not monitor severe weather alerts to proactively charge your batteries for backup during potential outages. If a grid outage occurs and your battery charge is low, you may not be able to power your home.
+Storm Guard monitors severe weather alerts issued by the National Weather Service in the United States and the Bureau of Meteorology in Australia. For the complete list of weather alerts detected by Storm Guard, refer to the tables at the end of this page.
+How to enable or disable Storm Guard
+Open the Enphase App on your mobile device and tap Menu > Settings > Profile. Tap Storm Guard and use the toggle to enable or disable the feature.
+You can also choose to turn off Storm Guard for a specific alert without disabling the feature entirely by tapping the Opt Out button.
+What happens when Storm Guard is enabled and a severe weather alert is issued?
+When a severe weather alert is issued for your area, your system profile will be automatically set to Full Backup and Storm Alert: On will be displayed on the Status screen of the Enphase App. To maximize backup capacity, your batteries will discharge only if there is no grid power available.
+Note: When Storm Guard is enabled, your batteries charge from solar power or the grid, in that order of priority, depending on which is available.
+Your system profile will return to its prior setting once the severe weather alert ends.
+List of severe weather notifications detected by Storm Guard
+Alerts issued by the National Weather Service in the United States:
+Blizzard Warning	Coastal Flood Warning	Earthquake Warning
+Excessive Heat Warning	Flash Flood Warning	Flood Warning
+Gale Warning	Heat Advisory	High Wind Warning
+Hurricane Warning*	Ice Storm Warning	Lakeshore Flood Warning
+Nuclear Power Plant Warning	Typhoon Warning	Severe Thunderstorm Warning*
+Severe Thunderstorm Watch	Snow Squall Warning	Storm Surge Warning*
+Tornado Warning	Tropical Storm Warning*	Wind Advisory
+Wind Chill Advisory	Wind Chill Warning*	Winter Storm Warning*
+Winter Weather Advisory	Flood Watch	Tornado Watch
+Hurricane Watch	Tropical Storm Watch	Red Flag Warning
+Cold Weather Advisory
+*Alerts marked with an asterisk are critical weather alerts that have a high chance of causing grid outages. These will automatically activate Storm Guard, even if the feature had been previously disabled in the app. Storm Guard will remain active throughout the duration of the critical alert.
+Alerts issued by the Bureau of Meteorology in Australia:
+Avalanche	Blizzard	Cold
+Earthquake	Fire	Flood
+Hazmat	Hurricane	Storm
+Strong Wind	Tornado	Tsunami
+Typhoon	Volcano	Wind Chill

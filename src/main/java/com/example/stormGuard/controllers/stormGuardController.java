@@ -1,6 +1,7 @@
 package com.example.stormGuard.controllers;
 
 
+import com.example.stormGuard.services.ToolService;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
 import org.springframework.ai.chat.memory.ChatMemory;
@@ -21,6 +22,9 @@ public class stormGuardController {
     @Autowired
     private Map<String, ChatClient> chatClientMap;
 
+    @Autowired
+    private ToolService toolService;
+
     private final ChatMemory chatMemory = MessageWindowChatMemory.builder().build();
 
     @GetMapping("/healthCheck")
@@ -40,6 +44,7 @@ public class stormGuardController {
             String result=chatClient
                     .prompt()
                     .advisors(MessageChatMemoryAdvisor.builder(chatMemory).build())
+                    .tools(toolService)
                     .user(userPrompt)
                     .call()
                     .content();

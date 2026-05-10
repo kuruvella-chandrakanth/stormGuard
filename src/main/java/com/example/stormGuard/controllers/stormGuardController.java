@@ -1,6 +1,7 @@
 package com.example.stormGuard.controllers;
 
 
+import com.example.stormGuard.models.NwsAlertResponse;
 import com.example.stormGuard.services.ToolService;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
@@ -41,8 +42,12 @@ public class stormGuardController {
             if (chatClient == null) {
                 return ResponseEntity.badRequest().body("Unknown model: " + model + ". Available: " + chatClientMap.keySet());
             }
+            String systemInstructions = "When presenting weather alerts, always include ALL details for each alert: " +
+                    "Event type, Severity, Urgency, Area, Headline, Description, Instruction, " +
+                    "From/Until dates, Source, and Affected Zones. Do not summarize or omit any fields.";
             String result=chatClient
                     .prompt()
+                    .system(systemInstructions)
                     .advisors(MessageChatMemoryAdvisor.builder(chatMemory).build())
                     .tools(toolService)
                     .user(userPrompt)
@@ -73,6 +78,11 @@ public class stormGuardController {
             e.printStackTrace();
             return ResponseEntity.status(500).body("Error: " + e.getMessage());
         }
+    }
+
+    @GetMapping("/stormData/system")
+    public ResponseEntity<Object> getAlertFromCode(@RequestParam String state){
+        return ResponseEntity.ok(toolService.getStateAlert(state));
     }
 
 }

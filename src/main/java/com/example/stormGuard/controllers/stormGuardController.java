@@ -2,6 +2,7 @@ package com.example.stormGuard.controllers;
 
 
 import com.example.stormGuard.models.NwsAlertResponse;
+import com.example.stormGuard.services.ApiService;
 import com.example.stormGuard.services.ToolService;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
@@ -26,6 +27,9 @@ public class stormGuardController {
     @Autowired
     private ToolService toolService;
 
+    @Autowired
+    private ApiService apiService;
+
     private final ChatMemory chatMemory = MessageWindowChatMemory.builder().build();
 
     @GetMapping("/healthCheck")
@@ -42,12 +46,8 @@ public class stormGuardController {
             if (chatClient == null) {
                 return ResponseEntity.badRequest().body("Unknown model: " + model + ". Available: " + chatClientMap.keySet());
             }
-            String systemInstructions = "When presenting weather alerts, always include ALL details for each alert: " +
-                    "Event type, Severity, Urgency, Area, Headline, Description, Instruction, " +
-                    "From/Until dates, Source, and Affected Zones. Do not summarize or omit any fields.";
             String result=chatClient
                     .prompt()
-                    .system(systemInstructions)
                     .advisors(MessageChatMemoryAdvisor.builder(chatMemory).build())
                     .tools(toolService)
                     .user(userPrompt)
@@ -82,7 +82,18 @@ public class stormGuardController {
 
     @GetMapping("/stormData/system")
     public ResponseEntity<Object> getAlertFromCode(@RequestParam String state){
-        return ResponseEntity.ok(toolService.getStateAlert(state));
+        return ResponseEntity.ok(apiService.getStateAlert(state));
     }
+
+    @GetMapping("/geoCodeData/system")
+    public ResponseEntity<Object> getLatLongData(@RequestParam String city){
+        return ResponseEntity.ok(apiService.getLatLongData(city));
+    }
+
+    @GetMapping("/weatherData/system")
+    public ResponseEntity<Object> getWeatherData(@RequestParam Double latitude,@RequestParam Double longitude ){
+        return ResponseEntity.ok(apiService.getWeatherData(latitude,longitude));
+    }
+
 
 }

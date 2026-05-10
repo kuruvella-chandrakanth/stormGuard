@@ -1,8 +1,12 @@
 package com.example.stormGuard.services;
 
+import com.example.stormGuard.helper.GeocodeHelper;
 import com.example.stormGuard.helper.StormGuardHelper;
+import com.example.stormGuard.helper.WeatherHelper;
+import com.example.stormGuard.models.GeoCodeResponse;
 import com.example.stormGuard.models.NwsAlertResponse;
 import com.example.stormGuard.models.NwsAlertResponse.AlertProperties;
+import com.example.stormGuard.models.WeatherResponse;
 import org.springframework.ai.tool.annotation.Tool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,14 +17,13 @@ import java.util.List;
 
 @Service
 public class ToolService {
-
     @Autowired
     public StormGuardHelper stormGuardHelper;
+    @Autowired
+    public GeocodeHelper geocodeHelper;
+    @Autowired
+    public WeatherHelper weatherHelper;
 
-    @Tool(description = "returns weather of a place")
-    public String getWeather(String city){
-        return "city"+city+"temperature 25 degrees";
-    }
 
     @Tool(description = "returns whether any storm or weather alerts are present in a US state. Pass the 2-letter state code like CA, TX, FL etc.")
     public String getAlerts(String state){
@@ -61,8 +64,13 @@ public class ToolService {
         return sb.toString();
     }
 
-    public NwsAlertResponse getStateAlert(String state){
-        return stormGuardHelper.getAlerts(state);
+    @Tool(description = "this will fetch the latitude, longitute details of a place")
+    public GeoCodeResponse getLatLongDetails(String city){
+         return geocodeHelper.getLatLongDetails(city);
+    }
+    @Tool(description = "this will fetch the weather details of a place")
+    public WeatherResponse getWeatherDetails(Double latitude, Double longitude){
+        return weatherHelper.getWeatherDetails(latitude,longitude);
     }
 
 }

@@ -15,7 +15,15 @@ public class StormGuardHelper {
     public NwsAlertResponse getAlerts(String state){
         NwsAlertResponse response = restClient.get()
                 .uri(nwsBaseUrl + "?area={state}", state)
-                .header("User-Agent", "StormGuard App")
+                .retrieve()
+                .body(NwsAlertResponse.class);
+
+        return response;
+    }
+
+    public NwsAlertResponse getAlerts(Double latitude,Double Longitude){
+        NwsAlertResponse response = restClient.get()
+                .uri(nwsBaseUrl + "?point={latitude},{Longitude}", latitude,Longitude)
                 .retrieve()
                 .body(NwsAlertResponse.class);
 

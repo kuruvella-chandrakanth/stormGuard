@@ -32,7 +32,7 @@ public class AiConfig {
                         .chatClientBuilder(ChatClient.builder(chatModel))
                         .build())
                 .documentRetriever(VectorStoreDocumentRetriever.builder()
-                        .similarityThreshold(0.60)
+                        .similarityThreshold(0.80)
                         .vectorStore(vectorStore)
                         .topK(5)
                         .build())

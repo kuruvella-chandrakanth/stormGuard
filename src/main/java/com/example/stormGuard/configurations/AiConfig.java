@@ -5,6 +5,7 @@ import org.springframework.ai.chat.client.advisor.api.Advisor;
 import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.embedding.EmbeddingModel;
 import org.springframework.ai.google.genai.GoogleGenAiChatModel;
+import org.springframework.ai.bedrock.converse.BedrockProxyChatModel;
 import org.springframework.ai.openai.OpenAiChatModel;
 import org.springframework.ai.rag.advisor.RetrievalAugmentationAdvisor;
 import org.springframework.ai.rag.generation.augmentation.ContextualQueryAugmenter;
@@ -56,13 +57,22 @@ public class AiConfig {
                 .build();
     }
 
+    @Bean("bedrock")
+    public ChatClient bedrockChatClient(BedrockProxyChatModel chatModel, VectorStore vectorStore) {
+        return ChatClient.builder(chatModel)
+                .defaultAdvisors(ragAdvisor(vectorStore, chatModel))
+                .build();
+    }
+
     @Bean
     public Map<String, ChatClient> chatClientMap(
             @Qualifier("gemini") ChatClient gemini,
-            @Qualifier("groq") ChatClient groq) {
+            @Qualifier("groq") ChatClient groq,
+            @Qualifier("bedrock") ChatClient bedrock) {
         return Map.of(
                 "gemini", gemini,
-                "groq", groq
+                "groq", groq,
+                "bedrock", bedrock
         );
     }
 }

@@ -37,7 +37,7 @@ public class ToolService {
     public UserRepository userRepository;
 
 
-    @Tool(description = "returns whether any storm or weather alerts are present in a US state. Pass the 2-letter state code like CA, TX, FL etc")
+    @Tool(description = "returns whether any storm or weather alerts are present in a US state. Pass the 2-letter state code like CA, TX, FL etc,")
     public String getStormAlerts(String state){
         NwsAlertResponse response = restClient.get()
                 .uri(nwsBaseUrl + "?area={state}", state)

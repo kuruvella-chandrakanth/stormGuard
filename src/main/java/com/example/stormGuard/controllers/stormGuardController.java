@@ -11,6 +11,7 @@ import org.springframework.ai.chat.memory.ChatMemory;
 import org.springframework.ai.chat.memory.MessageWindowChatMemory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ai.chat.prompt.ChatOptions;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
@@ -38,20 +39,26 @@ public class stormGuardController {
     @GetMapping("/stormData")
     public ResponseEntity<String> firstMethod(
             @RequestParam(name="prompt") String userPrompt,
-            @RequestParam(name="model", defaultValue="gemini") String model){
+            @RequestParam(name="model", defaultValue="gemini") String model,
+            @RequestParam(name="bedrockModel", required=false) String bedrockModel){
         try {
             ChatClient chatClient = chatClientMap.get(model);
             if (chatClient == null) {
                 return ResponseEntity.badRequest().body("Unknown model: " + model + ". Available: " + chatClientMap.keySet());
             }
-            String result=chatClient
+            var promptSpec = chatClient
                     .prompt()
                     .system("Try to give output in nice paragraph and points format ")
                     .advisors(MessageChatMemoryAdvisor.builder(chatMemory).build())
                     .tools(toolService)
-                    .user(userPrompt)
-                    .call()
-                    .content();
+                    .user(userPrompt);
+
+            if ("bedrock".equals(model) && bedrockModel != null) {
+                promptSpec.options(ChatOptions.builder()
+                        .model(bedrockModel));
+            }
+
+            String result = promptSpec.call().content();
 
             return ResponseEntity.ok(result);
         } catch (Exception e) {

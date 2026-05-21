@@ -1,11 +1,11 @@
 package com.example.stormGuard.configurations;
 
+import org.springframework.ai.bedrock.converse.BedrockProxyChatModel;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.api.Advisor;
 import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.embedding.EmbeddingModel;
 import org.springframework.ai.google.genai.GoogleGenAiChatModel;
-import org.springframework.ai.bedrock.converse.BedrockProxyChatModel;
 import org.springframework.ai.openai.OpenAiChatModel;
 import org.springframework.ai.rag.advisor.RetrievalAugmentationAdvisor;
 import org.springframework.ai.rag.generation.augmentation.ContextualQueryAugmenter;

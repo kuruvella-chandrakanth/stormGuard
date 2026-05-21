@@ -1,5 +1,6 @@
 package com.example.stormGuard.services;
 
+import com.example.stormGuard.helper.EmailHelper;
 import com.example.stormGuard.helper.GeocodeHelper;
 import com.example.stormGuard.helper.StormGuardHelper;
 import com.example.stormGuard.helper.WeatherHelper;
@@ -25,6 +26,10 @@ public class ApiService {
     @Autowired
     public UserRepository userRepository;
 
+    @Autowired
+
+    public EmailHelper emailHelper;
+
     public NwsAlertResponse getStateAlert(String state){
         return stormGuardHelper.getAlerts(state);
     }
@@ -47,6 +52,14 @@ public class ApiService {
 
     public User getUser(String email){
         return userRepository.findByEmail(email);
+    }
+
+    public void sendEmail(String toUser,String subject,String body,String canSeeEmail){
+        emailHelper.sendEmailToUser(toUser,subject,body,canSeeEmail);
+    }
+
+    public void testEmailConnection(){
+        emailHelper.testConnection();
     }
 
 }
